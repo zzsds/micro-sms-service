@@ -26,7 +26,7 @@ func InitConnectionMysql() {
 			panic(fmt.Sprintf("mysql initmysql failed %s\n", err.Error()))
 		}
 	})
-
+	d.init()
 }
 
 func NewMysql() *mysql {
@@ -58,7 +58,6 @@ func (m *mysql) init() {
 		&models.Template{},
 	)
 }
-
 
 func Scope(key string, mode interface{}) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
