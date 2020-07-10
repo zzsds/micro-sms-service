@@ -2,8 +2,8 @@ package service
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/zzsds/micro-sms-service/models"
 	"github.com/zzsds/micro-sms-service/consts"
+	"github.com/zzsds/micro-sms-service/models"
 )
 
 // TemplateRepo ...
@@ -43,7 +43,7 @@ func (r *TemplateRepo) GetCodeTemplateFirst(provider string, bizType int32) (*mo
 		err           error
 	)
 	templateModel.Provider = provider
-	dbx := Db.Scopes(Scope("enabled", define.Enabled_Yes), Scope("mode", define.SmsMode_Code), Scope("biz_type", bizType))
+	dbx := Db.Scopes(Scope("enabled", consts.Enabled_Yes), Scope("mode", consts.SmsMode_Code), Scope("biz_type", bizType))
 	if err = dbx.Where(&templateModel).First(&templateModel).Error; err != nil {
 		return nil, err
 	}
@@ -57,7 +57,7 @@ func (r *TemplateRepo) GetNoticeTemplateFirst(provider string, bizType int32) (*
 		err           error
 	)
 	templateModel.Provider = provider
-	dbx := Db.Scopes(Scope("enabled", define.Enabled_Yes), Scope("mode", define.SmsMode_Notice), Scope("biz_type", bizType))
+	dbx := Db.Scopes(Scope("enabled", consts.Enabled_Yes), Scope("mode", consts.SmsMode_Notice), Scope("biz_type", bizType))
 	if err = dbx.Where(&templateModel).First(&templateModel).Error; err != nil {
 		return nil, err
 	}
