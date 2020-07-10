@@ -7,12 +7,11 @@ import (
 
 	"github.com/micro/go-micro/v2/errors"
 	"github.com/zzsds/micro-sms-service/conf"
+	"github.com/zzsds/micro-sms-service/consts"
 	"github.com/zzsds/micro-sms-service/models"
 	"github.com/zzsds/micro-sms-service/modules/provider"
 	"github.com/zzsds/micro-sms-service/proto/yunpian"
 	"github.com/zzsds/micro-sms-service/service"
-	"gitlab.bft.pub/welfare/common/proto/define"
-	"gitlab.bft.pub/welfare/common/utils"
 )
 
 // Send ...
@@ -32,8 +31,8 @@ func NewYunPian() *YunPian {
 
 // BizType is a single request handler called via client.Call or the generated client code
 func (e *YunPian) BizType(ctx context.Context, req *yunpian.BizTypeResponse, rsp *yunpian.BizTypeResponse) error {
-	var typeList = make([]*yunpian.MapType, 0, len(define.SmsBizType_name))
-	for key, val := range define.SmsBizType_name {
+	var typeList = make([]*yunpian.MapType, 0, len(consts.SmsBizType_name))
+	for key, val := range consts.SmsBizType_name {
 		typeList = append(typeList, &yunpian.MapType{Key: key, Value: val})
 	}
 	rsp.List = typeList
@@ -52,7 +51,7 @@ func (e *YunPian) Code(ctx context.Context, req *yunpian.CodeResource, rsp *yunp
 		expire = 5 * time.Minute
 	}
 	expiresAt := now.Add(expire)
-	if !utils.ValidateMobile(req.Mobile) {
+	if !conf.ValidateMobile(req.Mobile) {
 		return errors.BadRequest("go.micro.srv.sms Code", "手机号格式错误")
 	}
 
@@ -81,7 +80,7 @@ func (e *YunPian) Validate(ctx context.Context, req *yunpian.ValidateRequest, rs
 	if ok, _ := regexp.MatchString(`([0-9]\d{5})$`, req.Code); !ok {
 		return errors.BadRequest("go.micro.srv.sms Validate", "验证码格式错误")
 	}
-	if !utils.ValidateMobile(req.Mobile) {
+	if !conf.ValidateMobile(req.Mobile) {
 		return errors.BadRequest("go.micro.srv.sms Validate", "手机号格式错误")
 	}
 	if _, err = e.Repo.Validate(req.Mobile, req.Code, req.BizType); err != nil {
@@ -94,7 +93,7 @@ func (e *YunPian) Validate(ctx context.Context, req *yunpian.ValidateRequest, rs
 // Notice ...
 func (e *YunPian) Notice(ctx context.Context, req *yunpian.EventResource, rsp *yunpian.EventResource) error {
 
-	if !utils.ValidateMobile(req.Mobile) {
+	if !conf.ValidateMobile(req.Mobile) {
 		return errors.BadRequest("go.micro.srv.sms Code", "手机号格式错误")
 	}
 
