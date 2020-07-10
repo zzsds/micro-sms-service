@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package sms;
+
+
+service Sms {
+    rpc SendList (SendPage) returns (SendPage);
+    rpc TemplateList (TemplatePage) returns (TemplatePage);
+    rpc Template (SmsStruct) returns (SmsStruct);
+    rpc List (ListRequest) returns (ListResponse);
+    rpc Create (CreateTempRequest) returns (CreateTempResponse);
+}
+
+message SmsStruct {
+    int64 userId = 1;
+    string sid = 2;
+    string provider = 3;
+    int32 bizType = 4;
+    string mobile = 5;
+    string content = 6;
+    int64 success = 7;
+    string message = 8;
+    int64 id = 9;
+    int32 mode = 10;
+    string sign = 11;
+    string expiresAt = 12;
+}
+
+message SendPage {
+    repeated SmsStruct data = 1;
+}
+
+
+// *************  短信模板 ************************ //
+message TemplatePage {
+    repeated SmsStruct data = 1;
+}
+
+message ListRequest {
+    string mobile = 1;
+    string code = 2;
+}
+
+message ListResponse {
+    bool success = 1;
+}
+
+message CreateTempRequest {
+
+}
+
+message CreateTempResponse {
+
+}

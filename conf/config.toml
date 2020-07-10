@@ -1,0 +1,24 @@
+
+[db]
+host = "192.168.3.2:3306"
+user = "root"
+password = "password"
+name = "welfare_sms"
+charset =  "utf8"
+debug = true
+
+[sms]
+    [sms.yunpian]
+    name = "yunpian"
+    APIKey = "1f09cc61a0e5cbad50bcfa5d8f8ddc4a"
+    debug = true
+
+    [sms.ali]
+    name = "ali"
+    APIKey = "1f09cc61a0e5cbad50bcfa5d8f8ddc4a"
+    debug = true
+
+    [sms.tengxun]
+    name = "tengxun"
+    APIKey = "1f09cc61a0e5cbad50bcfa5d8f8ddc4a"
+    debug = true
