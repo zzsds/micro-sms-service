@@ -3,6 +3,7 @@ package subscriber
 import (
 	"context"
 
+	"github.com/zzsds/micro-sms-service/conf"
 	. "github.com/zzsds/micro-sms-service/conf"
 
 	"github.com/micro/go-micro/v2/errors"
@@ -13,7 +14,6 @@ import (
 	"github.com/zzsds/micro-sms-service/modules/provider"
 	"github.com/zzsds/micro-sms-service/proto/yunpian"
 	"github.com/zzsds/micro-sms-service/service"
-	"gitlab.bft.pub/welfare/common/utils"
 )
 
 // Send ...
@@ -37,7 +37,7 @@ func (e *Send) Handle(ctx context.Context, req *yunpian.EventResource) error {
 	if req.Mode == consts.SmsMode_Code {
 		return errors.BadRequest("go.micro.srv.sms Code", "code function not open")
 	}
-	if !utils.ValidateMobile(req.Mobile) {
+	if !conf.ValidateMobile(req.Mobile) {
 		return errors.BadRequest("go.micro.srv.sms Code", "手机号格式错误")
 	}
 

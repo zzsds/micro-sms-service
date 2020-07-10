@@ -3,7 +3,7 @@ package service
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/zzsds/micro-sms-service/models"
-	"gitlab.bft.pub/welfare/common/proto/define"
+	"github.com/zzsds/micro-sms-service/consts"
 )
 
 // TemplateRepo ...

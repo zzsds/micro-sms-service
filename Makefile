@@ -14,7 +14,7 @@ all: build
 proto:
 	@echo execute ${PROTO} proto file generate ${OBJECTDIR}
 	protoc --proto_path=. --proto_path=../../ --micro_out=. --go_out=. proto/${PROTO}/${PROTO}.proto
-	mv -if gitlab.bft.pub/welfare/sms/proto/${PROTO}/* proto/${PROTO}
+	mv -if github.com/zzsds/micro-sms-service/sms/proto/${PROTO}/* proto/${PROTO}
 	rm -rf github.com/
 vendor:
 	go mod vendor

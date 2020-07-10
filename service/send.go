@@ -5,10 +5,10 @@ import (
 	"time"
 
 	log "github.com/micro/go-micro/v2/logger"
+	"github.com/zzsds/micro-sms-service/conf"
 	"github.com/zzsds/micro-sms-service/consts"
 	"github.com/zzsds/micro-sms-service/models"
 	"github.com/zzsds/micro-sms-service/modules/provider"
-	"gitlab.bft.pub/welfare/common/utils"
 )
 
 const (
@@ -120,7 +120,7 @@ func (repo *SendRepo) Mobile(mobile string) (*models.Code, error) {
 
 // SendCode ...
 func (repo *SendRepo) SendCode(sendModel *models.Send, driver provider.Driver) error {
-	code := utils.GenValidateCode(6)
+	code := conf.GenValidateCode(6)
 	if driver.GetDebug() {
 		code = defaultCode
 	}
