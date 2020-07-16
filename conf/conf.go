@@ -28,8 +28,8 @@ var (
 	// ******* acm config ***********************
 	CFG_ENDPOINT    = GetEnv("CFG_ENDPOINT", "acm.aliyun.com")
 	CFG_NAMESPACEID = GetEnv("CFG_NAMESPACEID", "a23c93cd-491c-44dd-be30-fb1df6e6ddaf")
-	CFG_ACCESSKEY   = GetEnv("CFG_ACCESSKEY", "LTAI4FgL4Ew4kGTSEWQ8gSbo")
-	CFG_SECRETKEY   = GetEnv("CFG_SECRETKEY", "ZElyfnMQ4E4tE8QKJeXdZmgJ54Mgea")
+	CFG_ACCESSKEY   = GetEnv("CFG_ACCESSKEY", "")
+	CFG_SECRETKEY   = GetEnv("CFG_SECRETKEY", "")
 	CFG_CLUSTER     = GetEnv("CFG_CLUSTER", "test")
 )
 
