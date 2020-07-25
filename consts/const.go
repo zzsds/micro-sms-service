@@ -20,6 +20,26 @@ var SmsBizType_name = map[int32]string{
 	16: "Virtual_Money_Freeze",
 }
 
+var SmsBizType_value = map[string]int32{
+	"Login":                   0,
+	"Register":                1,
+	"Edit_Password":           2,
+	"Forget_Password":         3,
+	"Upgrade_Permit":          4,
+	"Upgrade_Audite":          5,
+	"Upgrade_Success":         6,
+	"Upgrade_Omit":            7,
+	"Modify_Mobile":           8,
+	"Upgrade_Reward_Frozen":   9,
+	"Upgrade_Reward_Unfreeze": 10,
+	"Wallet_Set_Pay_Pass":     11,
+	"Virtual_Money_OK":        12,
+	"Transferts_Shift_To":     13,
+	"Withdraw_Money_Remit":    14,
+	"Withdraw_Money_Failed":   15,
+	"Virtual_Money_Freeze":    16,
+}
+
 const (
 	SmsBizType_Login                   = 0
 	SmsBizType_Register                = 1
